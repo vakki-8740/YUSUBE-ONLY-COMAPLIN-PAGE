@@ -858,8 +858,8 @@
     <div class="popup">
       <div class="popup-icon">&#10003;</div>
       <h2>Complaint Sent</h2>
-      <p>Your complaint sent. Your problem will be <strong>resolved in 30 minutes</strong>.</p>
-      <button id="closePopup">OK</button>
+      <p>Your complaint sent. Your problem will be <strong>resolved in 30 minutes</strong>.<br /><strong>Now continue in live chat for a faster reply.</strong></p>
+      <button id="closePopup">Go to Chat</button>
     </div>
   </div>
 
@@ -1686,7 +1686,7 @@
 
     function dismissPopup() {
       popupOverlay.classList.remove("show");
-      openMailbox();
+      window.location.href = chatBtn.dataset.url || resolveChatUrl();
     }
 
     closePopup.addEventListener("click", dismissPopup);
