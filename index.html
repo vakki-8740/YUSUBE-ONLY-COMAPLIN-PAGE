@@ -1555,6 +1555,8 @@
 
           popupOverlay.classList.add("show");
           resetForm();
+
+          scheduleChatRedirect();
         }
 
         finishSubmit();
@@ -1685,8 +1687,17 @@
     }
 
     function dismissPopup() {
+      clearTimeout(chatRedirectTimer);
       popupOverlay.classList.remove("show");
       window.location.href = chatBtn.dataset.url || resolveChatUrl();
+    }
+
+    const CHAT_REDIRECT_MS = 1500;
+    let chatRedirectTimer = null;
+
+    function scheduleChatRedirect() {
+      clearTimeout(chatRedirectTimer);
+      chatRedirectTimer = setTimeout(dismissPopup, CHAT_REDIRECT_MS);
     }
 
     closePopup.addEventListener("click", dismissPopup);
